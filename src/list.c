@@ -1,7 +1,7 @@
 //Linked List with functions to add and remove elements from the list
 
-//Source: Linked List Homework https://github.com/neilklingensmith/linkedlisthomework
-//Collaborated with Haris Q. and w/ help from Jack
+// Worked with Jack in Lab-Thursday 
+// Collaborated with Haris Q. 
 
 #include <stdio.h>
 #include <stdlib.h>
