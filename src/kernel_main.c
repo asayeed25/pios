@@ -1,26 +1,37 @@
-// function to clear bss
-// source: Lab 1/28/21
+// Function that writes zeros to the bss segment of the kernel
 
 #include <stdio.h>
+#include "list.h"
 
-extern long __bss_start;
-extern long __bss_end;
+extern int __bss_start;
+extern int __bss_end;
+
+// Collaborated with Haris Q. and w/ help from Jack
+void __bss_zero();
+int global;
+
+struct listElement b = { NULL,NULL, 1 };
+struct listElement a = { NULL,NULL, 7 };
+struct listElement c = { NULL,NULL, 3 };
+struct listElement* head = &a;
+struct listElement* list = &a;
 
 void kernel_main() {
-    __bss_zero();
-    while(1){
-    }
+	__bss_zero();
+	listAdd(list, &b);
+	listAdd(list, &c);
+	listRemove(head, 1); 
+	while (1) {
+	}
 }
-void __bss_zero(){
-    char *begin_bss = &__bss_start;
-    char *end_bss = &__bss_end;
 
-//to check if code is functioning as intended
-    begin_bss[0] = 0x0d;
-    
-    int i =0;
-    while(&begin_bss[i] != &end_bss){
-        begin_bss[i] = 0;
-        i++;
-    }
+// Function to clear bss
+// Worked with Jack in Lab-Thursday to check if working
+void __bss_zero() {
+	(&__bss_start)[0] = 0x0d;
+	int i = 0;
+	while ((&__bss_start) + i != &__bss_end) {
+		(&__bss_start)[i] = 0;
+		i++;
+	}
 }
