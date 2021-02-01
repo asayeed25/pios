@@ -6,7 +6,9 @@
 extern int __bss_start;
 extern int __bss_end;
 
-// Collaborated with Haris Q. and w/ help from Jack
+// Worked with Jack in Lab-Thursday 
+// Collaborated with Haris Q. 
+
 void __bss_zero();
 int global;
 
@@ -26,7 +28,7 @@ void kernel_main() {
 }
 
 // Function to clear bss
-// Worked with Jack in Lab-Thursday to check if working
+
 void __bss_zero() {
 	(&__bss_start)[0] = 0x0d;
 	int i = 0;
