@@ -40,8 +40,9 @@ void listRemove(struct listElement** head, int data)
 	}
 }
 
-int main()
+/* int main()
 {
 	//Creating a list head pointer
 	struct listElement* listHead = NULL;
 }
+*/
