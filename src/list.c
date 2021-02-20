@@ -1,9 +1,5 @@
 //Linked List with functions to add and remove elements from the list
 
-
-// Worked on it in Lab-Thursday
-// Collaborated with Haris Q. 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "list.h"
@@ -41,8 +37,9 @@ void listRemove(struct listElement** head, int data)
 	}
 }
 
-int main()
+/* int main()
 {
 	//Creating a list head pointer
 	struct listElement* listHead = NULL;
 }
+*/

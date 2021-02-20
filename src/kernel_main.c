@@ -3,6 +3,7 @@
 
 extern int __bss_start;
 extern int __bss_end;
+
 void __bss_zero();
 
 int global;
@@ -37,7 +38,11 @@ void kernel_main() {
 	}
 }
 
+
 // Homework 1 - Clearing BSS
+// Function to clear bss
+
+
 void __bss_zero() {
 	(&__bss_start)[0] = 0x0d;
 	int i = 0;
