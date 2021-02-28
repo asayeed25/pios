@@ -1,0 +1,28 @@
+/*
+
+//Homework 1
+void kernel_main() {
+  
+    __bss_zero();
+	get_timer_count();
+	listAdd(list, &b);
+	listAdd(list, &c);
+	listRemove(head, 1); 
+     
+	while (1) {
+    }
+}
+
+
+//Homework 2 
+void kernel_main() {
+  
+   led_init();
+	while (1) {
+		led_on();
+        delay();
+        led_off();
+        delay();
+       
+    }
+}

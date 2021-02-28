@@ -1,41 +1,37 @@
-#include <stdio.h>
+//#include <stdio.h>
 #include "list.h"
+#include "serial.h"
+#include "rprintf.h"
+
 
 extern int __bss_start;
 extern int __bss_end;
-
 void __bss_zero();
 
 int global;
+#define NULL (void*)0
 
 struct listElement b = { NULL,NULL, 1 };
 struct listElement a = { NULL,NULL, 7 };
 struct listElement c = { NULL,NULL, 3 };
 struct listElement* head = &a;
 struct listElement* list = &a;
-
+//#define *mu_io_reg = 0x3F215040;
+/*
 void led_init();
 void led_on();
 void delay();
 void led_off();
-
-
+*/
 //MAIN
 void kernel_main() {
-  /*
-    __bss_zero();
-	get_timer_count();
-	listAdd(list, &b);
-	listAdd(list, &c);
-	listRemove(head, 1); 
-  */  
-    led_init();
+    int *mu_io_reg = 0x3F215040;
+    *mu_io_reg = 'h';
+    *mu_io_reg = 'w';
+    esp_printf(putc, "Memory location for kernel main: %x \n", kernel_main);
+
 	while (1) {
-        led_on();
-        delay();
-        led_off();
-        delay();
-	}
+    }
 }
 
 
@@ -53,10 +49,11 @@ void __bss_zero() {
 }
 
 // In Class Activity - Timer
-unsigned long get_timer_count(){
+/*unsigned long get_timer_count(){
 	unsigned long *timer_count_register = 0x3f003004;
 	return *timer_count_register;
 }
+*/
 
 // Homework 4 - LED Blinky 
 // Worked with Haris after class 
