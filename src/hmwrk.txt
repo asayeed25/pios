@@ -1,5 +1,12 @@
 /*
 
+struct listElement b = { NULL,NULL, 1 };
+struct listElement a = { NULL,NULL, 7 };
+struct listElement c = { NULL,NULL, 3 };
+struct listElement* head = &a;
+struct listElement* list = &a;
+
+
 //Homework 1
 void kernel_main() {
   
@@ -15,6 +22,15 @@ void kernel_main() {
 
 
 //Homework 2 
+//#define *mu_io_reg = 0x3F215040;
+/*
+void led_init();
+void led_on();
+void delay();
+void led_off();
+*/
+
+
 void kernel_main() {
   
    led_init();
@@ -24,5 +40,16 @@ void kernel_main() {
         led_off();
         delay();
        
+    }
+}
+
+//Homework 5
+void kernel_main() {
+    int *mu_io_reg = 0x3F215040;
+    *mu_io_reg = 'h';
+    *mu_io_reg = 'w';
+    esp_printf(putc, "Memory location for kernel main: %x \n", kernel_main);
+
+	while (1) {
     }
 }

@@ -1,10 +1,13 @@
 //Define data structure for elements in linked List
 
+#ifndef __LIST_H
+#define __LIST_H
+
 struct listElement {
-	struct listElement* next;
-	struct listElement* prev;
-	int data;
+	struct listElement *next;
+	struct listElement *prev;
 };
 
-void listAdd(struct listElement* head, struct listElement* ele);
-void listRemove(struct listElement** head, int data);
+void listAdd(struct listElement **head, struct listElement *newElement);
+void listRemove(struct listElement *b);
+#endif

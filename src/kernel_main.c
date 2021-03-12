@@ -2,34 +2,28 @@
 #include "list.h"
 #include "serial.h"
 #include "rprintf.h"
-
-
+#include "page.h"
 extern int __bss_start;
 extern int __bss_end;
 void __bss_zero();
+extern struct ppage* free_list;
 
 int global;
 #define NULL (void*)0
 
-struct listElement b = { NULL,NULL, 1 };
-struct listElement a = { NULL,NULL, 7 };
-struct listElement c = { NULL,NULL, 3 };
-struct listElement* head = &a;
-struct listElement* list = &a;
-//#define *mu_io_reg = 0x3F215040;
-/*
-void led_init();
-void led_on();
-void delay();
-void led_off();
-*/
 //MAIN
 void kernel_main() {
-    int *mu_io_reg = 0x3F215040;
-    *mu_io_reg = 'h';
-    *mu_io_reg = 'w';
-    esp_printf(putc, "Memory location for kernel main: %x \n", kernel_main);
-
+    init_pfa_list();
+    struct ppage* test = free_list;
+    test = test->next;
+    esp_printf(putc, "Physical Address: %x\n", test->physical_addr);
+    test = allocate_physical_pages(2);
+    esp_printf(putc, "Physical Pages --> %x \n", test);
+    esp_printf(putc, "Physical Pages --> %x \n", test->physical_addr);
+    free_physical_pages(test);
+    test = free_list->next;
+    esp_printf(putc, "After Pages are Freed: %x \n", test->physical_addr);
+    
 	while (1) {
     }
 }
@@ -37,8 +31,6 @@ void kernel_main() {
 
 // Homework 1 - Clearing BSS
 // Function to clear bss
-
-
 void __bss_zero() {
 	(&__bss_start)[0] = 0x0d;
 	int i = 0;

@@ -1,45 +1,37 @@
 //Linked List with functions to add and remove elements from the list
 
-#include <stdio.h>
-#include <stdlib.h>
+#include <stddef.h>
 #include "list.h"
 
 //Adding new elements to the list
-void listAdd(struct listElement* head, struct listElement* ele)
-{
-	struct listElement* prev; 
-	struct listElement* temp = head;
-	while (temp->next) {
-		prev = temp;
-		temp = temp->next;
+void listAdd(struct listElement **head, struct listElement *newElement){
+	struct listElement *iterator = (struct listElement*)head;
+	
+	//link element b into the list between iterator and iterator->next
+	newElement->next = iterator->next;
+	newElement->prev = iterator;
+	
+	iterator->next = newElement;
+	
+	if(newElement->next != NULL){
+		newElement->next->prev = newElement;
 	}
-	temp->prev = prev;
-	temp->next = ele;
 }
+	
+
 
 //Removing an element from the list
-void listRemove(struct listElement** head, int data)
-{
-	struct listElement* listHead = *head;
-	if (head == NULL) {
-		return;
-	}
-	if (listHead->data == data) {
-		*head = listHead->next;
-		return;
-	}
-	while (listHead->next) {
-		if (data == listHead->next->data) {
-			listHead->next = listHead->next->next;
-			break;
-		}
-		listHead = listHead->next;
-	}
-}
+void listRemove(struct listElement *b){
+	
+	if(b->next != NULL)
+		b->next->prev = b->prev;
+		
+	b->prev->next = b->prev;
+	
+	//NULLify the element's next and prev pointers to indicate
+	//that it is not linked into a list
+	b->next = NULL;
+	b->prev = NULL;
+}	
+	
 
-/* int main()
-{
-	//Creating a list head pointer
-	struct listElement* listHead = NULL;
-}
-*/
