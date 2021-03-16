@@ -11,10 +11,10 @@ int global;
 #define NULL (void*)0
 
 void kernel_main(){
-    //mmu_on();
+    mmu_on();
     
     // Worked on with Haris after class
-	init_pfa_list();
+	/*init_pfa_list();
 	struct ppage* test = free_list->next;
 	esp_printf(putc, "Physical Address: %x\n", test->physical_addr);
 	test = allocate_physical_pages(2);
@@ -23,7 +23,7 @@ void kernel_main(){
 	free_physical_pages(test);
 	test = free_list->next;
 	esp_printf(putc, "After Pages are Freed: %x \n", test->physical_addr);
-	
+	*/
 	while (1){
 		
 	}
