@@ -13,7 +13,7 @@ int global;
 void kernel_main(){
     mmu_on();
     
-    // Worked on with Haris after class
+    // Worked on with Haris after class Thursday
 	/*init_pfa_list();
 	struct ppage* test = free_list->next;
 	esp_printf(putc, "Physical Address: %x\n", test->physical_addr);
