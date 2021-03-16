@@ -1,34 +1,33 @@
-//#include <stdio.h>
+void bss_to_zero();
+extern int __bss_start;
+extern int __bss_end;
+extern struct ppage* free_list;
 #include "list.h"
 #include "serial.h"
 #include "rprintf.h"
 #include "page.h"
-extern int __bss_start;
-extern int __bss_end;
-void __bss_zero();
-extern struct ppage* free_list;
-
+#include "mmu.h"
 int global;
 #define NULL (void*)0
 
-//MAIN
-void kernel_main() {
-    init_pfa_list();
-    struct ppage* test = free_list;
-    test = test->next;
-    esp_printf(putc, "Physical Address: %x\n", test->physical_addr);
-    test = allocate_physical_pages(2);
-    esp_printf(putc, "Physical Pages --> %x \n", test);
-    esp_printf(putc, "Physical Pages --> %x \n", test->physical_addr);
-    free_physical_pages(test);
-    test = free_list->next;
-    esp_printf(putc, "After Pages are Freed: %x \n", test->physical_addr);
+void kernel_main(){
+    //mmu_on();
     
-	while (1) {
-    }
+    // Worked on with Haris after class
+	init_pfa_list();
+	struct ppage* test = free_list->next;
+	esp_printf(putc, "Physical Address: %x\n", test->physical_addr);
+	test = allocate_physical_pages(2);
+	esp_printf(putc, "physical pages -->  %x \n", test);
+	esp_printf(putc, "physical pages -->  %x \n", test->physical_addr);
+	free_physical_pages(test);
+	test = free_list->next;
+	esp_printf(putc, "After Pages are Freed: %x \n", test->physical_addr);
+	
+	while (1){
+		
+	}
 }
-
-
 // Homework 1 - Clearing BSS
 // Function to clear bss
 void __bss_zero() {
